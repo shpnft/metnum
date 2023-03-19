@@ -1,0 +1,78 @@
+\documentclass[t,% Place text of slides at the (vertical) top of the slides
+brazilian,% Brazilian Portuguese, FTW!
+11pt,% Standard font size
+aspectratio=169,% Aspect ratio 16:9 (widescreen)
+table% xcolor option
+]{beamer}
+
+\usetheme{Boadilla}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle continuation}{}
+\setbeamertemplate{page number in head/foot}[framenumber]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{itemize items}[circle]
+\setbeamercovered{transparent}
+\setbeamerfont{frametitle}{size=\normalsize}
+
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage{mathtools}
+
+\usepackage{siunitx}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+
+\setkeys{Gin}{keepaspectratio}
+\sisetup{locale = FR}
+
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\arcsen}{arc sen}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+\usepackage{tcolorbox}
+\tcbset{boxrule=0pt, top=0pt, bottom=0pt}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{pgfcalendar}
+\usepackage{xstring}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newcommand{\feriados}{07/04/2023,21/04/2023,25/04/2023,01/05/2023,08/06/2023,29/06/2023}
+\newcommand{\inicio}{2023-03-20}
+
+\newcommand{\dma}[1]{
+    \newcount\mycount
+    \pgfcalendardatetojulian{\inicio+#1}{\mycount}
+    \pgfcalendarjuliantodate{\mycount}{\myyear}{\mymonth}{\myday}
+    \IfSubStr{,\feriados,}{,\myday/\mymonth/\myyear,}{\cellcolor{red!20}}{}
+    \myday/\mymonth
+}
+
+%--------------------------------------------------
+
+\def\Disciplina{Métodos Numéricos}
+\def\Professor{Rodrigo de Farias Gomes}
+\def\Periodo{Período 2022.2}
+
+\title{\Disciplina}
+\author{\Professor}
+\date{\Periodo}
+
+\begin{document}
+
+\include{include/parte01}
+
+\end{document}
