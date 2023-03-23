@@ -106,11 +106,22 @@
             onde PF é a nota da \textbf{prova final}
         \item Se \(MF \geq 5,0\) e a frequência em sala for maior que 75\%, o aluno está aprovado
         \item Haverá 30 aulas de \SI{2}{horas}, de forma que \textbf{o número máximo de faltas é 8}
+        % \item Google Sala de Aula:
+
+        %     \centering
+        %     https://classroom.google.com/c/NTQzNDU2NTQzODky?cjc=\textcolor{red}{i7z6ybp}
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Google Sala de Aula}
+    \centering
+    \qrcode[height=0.8\textheight]{https://classroom.google.com/c/NTQzNDU2NTQzODky?cjc=i7z6ybp}
+    \large{https://classroom.google.com/c/NTQzNDU2NTQzODky?cjc=\textcolor{red}{i7z6ybp}}
 \end{frame}
 
 \begin{frame}{Livro texto}
     \centering
+    \includegraphics[height=0.8\textheight]{images/livro_burden.jpg}
     \includegraphics[height=0.8\textheight]{images/ruggiero.png}
 \end{frame}
 
@@ -362,12 +373,12 @@
                 \fbox{\texttt{=SE(expressão\_lógica; valor\_se\_verdadeiro; valor\_se\_falso)}}
                 \vspace{1em}
             \end{center}
-        \item Assumindo que \(xa\) está B2, \(xb\) está C2, \(xr\) está D2, \(f(xa)\) está em E2, \(f(xb)\) está em F2 e \(f(xr)\) está em G2, a expressão
+        \item Assumindo que \(x_a\) está B2, \(x_b\) está C2, \(x_r\) está D2, \(f(x_a)\) está em E2, \(f(x_b)\) está em F2 e \(f(x_r)\) está em G2, a expressão
             \begin{center}
                 \fbox{\texttt{=SE(E2*G2>=0; D2; B2)}}
                 \vspace{1em}
             \end{center}
-            será igual a \(xr\) se \(f(xa)\) tiver o mesmo sinal que \(f(xr)\), caso contrário a expressão será igual a \(xa\)
+            será igual a \(x_r\) se \(f(x_a)\) tiver o mesmo sinal que \(f(x_r)\), caso contrário a expressão será igual a \(x_a\)
     \end{itemize}
 \end{frame}
 
@@ -380,4 +391,54 @@
         \item \(e^x=3x^2\)
         \item \((x-2)^2=\ln x\)
     \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Método de Newton-Raphson}
+
+    Sendo \(x_0\) uma aproximação inicial (''chute''), podemos obter uma aproximação ''melhor'' através da fórmula
+    \begin{block}
+        {}
+        \[ x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)} \]
+    \end{block}
+    onde \(k=0,1,2,\ldots\) é o número da \textbf{iteração}. 
+
+    O método de Newton-Raphson
+    \begin{itemize}
+        \item É um método \textit{aberto}, isto é, é necessário apenas um valor inicial \(x_0\)
+        \item Algumas vezes \textit{diverge}, ou seja, o resultado obtido em cada iteração se afasta da raiz verdadeira
+        \item Mas quando há convergência o resultado obtido em cada iteração se aproxima da raiz verdadeira muito mais rápido do que o método da bissecção
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade}
+    \begin{itemize}
+        \item Determine \(x\) tal que \(f(x)=0\) onde
+            \[
+                \color{blue}
+                \boxed{f(x)=x^2+3x-4}
+            \]
+            usando o método de Newton Raphson com derivada analítica
+            \[
+                \color{blue}
+                \boxed{f'(x)=2x+3}
+            \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Atividade}
+    Determine \(h\) tal que
+
+    \[
+        \color{blue}
+        r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}=3
+    \]
+    onde \(r=2\) usando o método de Newton Raphson com derivada analítica
+    \[
+        \color{blue}
+        \frac{d}{dx} \left( 
+            r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}
+        \right)=
+        2\sqrt{h(2r-h)}
+    \]
 \end{frame}
