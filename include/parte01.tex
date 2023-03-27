@@ -366,6 +366,84 @@
     \end{center}
 \end{frame}
 
+\begin{frame}{Como armazenar ''números''}
+    \begin{itemize}
+        \item Um número inteiro (sem casas decimais) pode ser armazenado na forma de um odômetro:
+            \begin{center}
+                \includegraphics[height=0.5\textheight]{images/odometro.jpg}
+            \end{center}
+        \item O número de ''dígitos'' depende da construção do odômetro
+        \item O intervalo de valores que os ''dígitos'' podem ter depende da construção do odômetro
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplo: Relógio}
+        Tem 2 dígitos, um pode ir de 0 até 59 e o outro de 1 até 12
+
+            \begin{center}
+                \includegraphics[height=0.65\textheight]{images/clock.jpeg}
+            \end{center}
+\end{frame}
+
+\begin{frame}{Computadores \textit{modernos}}
+    \begin{itemize}
+        \item Têm odômetros com números de dígitos múltiplo de 8
+        \item Um odômetro com 8 dígitos tem \SI{1}{byte} de tamanho, um odômetro 
+            com 16 dígitos tem \SI{2}{bytes} etc
+        \item Cada dígito é chamado de \textit{bit} e só pode ser 0 ou 1
+        \item  \SI{1}{byte}=\SI{8}{bits}
+        \item Qual o maior número que pode ser
+            armazenado em um odômetro binário com \SI{4}{bytes}? 
+    \end{itemize}
+
+    \centering
+    \includegraphics[height=0.54\textheight]{images/Captura de tela de 2023-03-26 23-58-54.png}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \includegraphics[height=0.75\textheight]{images/Captura de tela de 2023-03-27 00-22-46.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Conversão de binário para decimal}
+    \[
+        11001_{2}  = 1 \cdot 2^4 + 1 \cdot 2^3 + 0 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 =25_{10}
+    \]
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Conversão de decimal para binário}
+    \begin{center}
+        \begin{tikzpicture}
+            \coordinate (D-1-2) at (0,0) {}; % We must start with this command.
+            \Division{25}{2}{1} % First dividend, divisor, remainder
+            \Division{12}{2}{0} % Dividend (previous quotient), divisor, remainder
+            \Division{6}{2}{0}  
+            \Division{3}{2}{1}  
+            \FinDivision{1}     % Last remainder.
+
+            \only<2->{
+                % We can draw an arrow jumping from one remainder 
+                % to the next one. Every reminder is a node called
+                % Rdividend. Last remainder is node C.
+                \draw[red,shorten <=1mm, ->, dashed] (C) to[out=-150,in=-65] (R3);
+                \draw[red,shorten <=1mm, ->, dashed] (R3) to[out=-150,in=-65] (R6);
+                \draw[red,shorten <=1mm, ->, dashed] (R6) to[out=-150,in=-65] (R12);
+                \draw[red,shorten <=1mm, ->, dashed] (R12) to[out=-150,in=-65] (R25);
+            }
+        \end{tikzpicture}
+
+        \only<2->{
+            \[
+                25_{10} = 11001_{2}
+            \]
+        }
+    \end{center}
+\end{frame}
+
+% aula prática
 \begin{frame}{A função \textit{SE}}
     \begin{itemize}
         \item A função \textit{SE} ''retorna um valor se uma expressão lógica for verdadeira e outro se for falsa'':

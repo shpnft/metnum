@@ -29,6 +29,7 @@ table% xcolor option
 
 \usetikzlibrary{calc}
 \usetikzlibrary{intersections}
+\usetikzlibrary{matrix,positioning}
 
 \setkeys{Gin}{keepaspectratio}
 \sisetup{locale = FR}
@@ -71,6 +72,26 @@ table% xcolor option
 \title{\Disciplina}
 \author{\Professor}
 \date{\Periodo}
+
+% Macros for ``successive divisions'' 
+%
+\def\Division#1#2#3{ % Dividend, divisor, remainder
+ \matrix (D) [matrix of nodes,
+              below=0pt of D-1-2.south east,
+              row sep=1pt, column sep=1pt,
+              every node/.append style={minimum width=12mm}] {
+   #1 \pgfmatrixnextcell #2 \\
+   |[marcar] (R#1)| #3      \\
+ };
+ \draw[shorten >=2pt, shorten <=2pt]
+   (D-1-2.north west) |- (D-1-2.south east);
+}
+\def\FinDivision#1{
+\node[marcar, below=2pt of D-1-2.south] (C)(C)  {#1};
+}
+\tikzset{marcar/.style={circle,draw,inner sep=2pt,minimum width=0pt,
+fill=yellow!10}}
+%
 
 \begin{document}
 
