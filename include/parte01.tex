@@ -366,83 +366,6 @@
     \end{center}
 \end{frame}
 
-\begin{frame}{Como armazenar ''números''}
-    \begin{itemize}
-        \item Um número inteiro (sem casas decimais) pode ser armazenado na forma de um odômetro:
-            \begin{center}
-                \includegraphics[height=0.5\textheight]{images/odometro.jpg}
-            \end{center}
-        \item O número de ''dígitos'' depende da construção do odômetro
-        \item O intervalo de valores que os ''dígitos'' podem ter depende da construção do odômetro
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Exemplo: Relógio}
-        Tem 2 dígitos, um pode ir de 0 até 59 e o outro de 1 até 12
-
-            \begin{center}
-                \includegraphics[height=0.65\textheight]{images/clock.jpeg}
-            \end{center}
-\end{frame}
-
-\begin{frame}{Computadores \textit{modernos}}
-    \begin{itemize}
-        \item Têm odômetros com números de dígitos múltiplo de 8
-        \item Um odômetro com 8 dígitos tem \SI{1}{byte} de tamanho, um odômetro 
-            com 16 dígitos tem \SI{2}{bytes} etc
-        \item Cada dígito é chamado de \textit{bit} e só pode ser 0 ou 1
-        \item  \SI{1}{byte}=\SI{8}{bits}
-        \item Qual o maior número que pode ser
-            armazenado em um odômetro binário com \SI{4}{bytes}? 
-    \end{itemize}
-
-    \centering
-    \includegraphics[height=0.54\textheight]{images/Captura de tela de 2023-03-26 23-58-54.png}
-\end{frame}
-
-\begin{frame}
-    \begin{center}
-        \includegraphics[height=0.75\textheight]{images/Captura de tela de 2023-03-27 00-22-46.png}
-    \end{center}
-\end{frame}
-
-\begin{frame}[c]
-    \frametitle{Conversão de binário para decimal}
-    \[
-        11001_{2}  = 1 \cdot 2^4 + 1 \cdot 2^3 + 0 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 =25_{10}
-    \]
-\end{frame}
-
-\begin{frame}[c]
-    \frametitle{Conversão de decimal para binário}
-    \begin{center}
-        \begin{tikzpicture}
-            \coordinate (D-1-2) at (0,0) {}; % We must start with this command.
-            \Division{25}{2}{1} % First dividend, divisor, remainder
-            \Division{12}{2}{0} % Dividend (previous quotient), divisor, remainder
-            \Division{6}{2}{0}  
-            \Division{3}{2}{1}  
-            \FinDivision{1}     % Last remainder.
-
-            \only<2->{
-                % We can draw an arrow jumping from one remainder 
-                % to the next one. Every reminder is a node called
-                % Rdividend. Last remainder is node C.
-                \draw[red,shorten <=1mm, ->, dashed] (C) to[out=-150,in=-65] (R3);
-                \draw[red,shorten <=1mm, ->, dashed] (R3) to[out=-150,in=-65] (R6);
-                \draw[red,shorten <=1mm, ->, dashed] (R6) to[out=-150,in=-65] (R12);
-                \draw[red,shorten <=1mm, ->, dashed] (R12) to[out=-150,in=-65] (R25);
-            }
-        \end{tikzpicture}
-
-        \only<2->{
-            \[
-                25_{10} = 11001_{2}
-            \]
-        }
-    \end{center}
-\end{frame}
-
 % aula prática
 \begin{frame}{A função \textit{SE}}
     \begin{itemize}
@@ -471,52 +394,182 @@
     \end{enumerate}
 \end{frame}
 
+\begin{frame}{Como armazenar ''números''}
+    \begin{itemize}
+        \item Um número inteiro (sem casas decimais) pode ser armazenado na forma de um odômetro:
+            \begin{center}
+                \includegraphics[height=0.5\textheight]{images/odometro.jpg}
+            \end{center}
+        \item O número de ''dígitos'' depende da construção do odômetro
+        \item O intervalo de valores que os ''dígitos'' podem ter depende da construção do odômetro
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplo: Relógio}
+        Tem 2 dígitos, um pode ir de 0 até 59 e o outro de 1 até 12
+
+            \begin{center}
+                \includegraphics[height=0.65\textheight]{images/clock.jpeg}
+            \end{center}
+\end{frame}
+
+\begin{frame}{Computadores \textit{modernos}}
+    \begin{itemize}
+        \item Têm odômetros com números de dígitos múltiplo de 8
+        \item Um odômetro com 8 dígitos tem \SI{1}{byte} de tamanho, um odômetro 
+            com 16 dígitos tem \SI{2}{bytes} etc
+        \item Cada dígito é chamado de \textit{bit} e só pode ser 0 ou 1
+        \item  \SI{1}{byte}=\SI{8}{bits}
+        \item Qual o maior número que pode ser
+            armazenado com \SI{4}{bytes} (padrão na maioria dos sistemas)? 
+    \end{itemize}
+
+    \centering
+    \includegraphics[height=0.55\textheight-16.32pt]{images/Captura de tela de 2023-03-26 23-58-54.png}
+\end{frame}
+
 \begin{frame}
-    \frametitle{Método de Newton-Raphson}
+    \begin{center}
+        \includegraphics[height=0.9\textheight]{images/Captura de tela de 2023-03-27 00-22-46.png}
+    \end{center}
+\end{frame}
 
-    Sendo \(x_0\) uma aproximação inicial (''chute''), podemos obter uma aproximação ''melhor'' através da fórmula
-    \begin{block}
-        {}
-        \[ x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)} \]
-    \end{block}
-    onde \(k=0,1,2,\ldots\) é o número da \textbf{iteração}. 
+\begin{frame}[c]
+    \frametitle{Conversão de binário para decimal}
+    \[
+        11001_{2}  = 1 \cdot 2^4 + 1 \cdot 2^3 + 0 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 =25_{10}
+    \]
+\end{frame}
 
-    O método de Newton-Raphson
+\begin{frame}{\textit{Extra}: Conversão de decimal para binário}
+    \[
+        25_{10} = d_1 \cdot 2^4 + d_2 \cdot 2^3 + d_3 \cdot 2^2 + d_4 \cdot 2^1 + d_5 \cdot 2^0 = 
+        (d_1 d_2 d_3 d_4 d_5)_{2}
+    \]
     \begin{itemize}
-        \item É um método \textit{aberto}, isto é, é necessário apenas um valor inicial \(x_0\)
-        \item Algumas vezes \textit{diverge}, ou seja, o resultado obtido em cada iteração se afasta da raiz verdadeira
-        \item Mas quando há convergência o resultado obtido em cada iteração se aproxima da raiz verdadeira muito mais rápido do que o método da bissecção
+        \item Por que \(2^4\) e não \(2^5\)?
+        \item Temos que \(d_1 = 25 / 2^4 \) que é igual a 1 \textbf{com resto 9}
+        \item Temos que \(d_2 = 9 / 2^3\) que é igual a 1 \textbf{com resto 1}
+        \item Temos que \(d_3 = 1 / 2^2\) que é igual a 0 \textbf{com resto 1}
+        \item Temos que \(d_4 = 1 / 2^1\) que é igual a 0 \textbf{com resto 1}
+        \item Temos que \(d_5 = 1 / 2^0\) que é igual a 1 \textbf{com resto 0} (sempre)
+        \item Assim, temos que \(25_{10} = 11001_{2}\)
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Atividade}
+\begin{frame}[c]
+    \frametitle{\textit{Extra}: Conversão de decimal para binário}
+    \begin{center}
+        \begin{tikzpicture}
+            \coordinate (D-1-2) at (0,0) {}; % We must start with this command.
+            \Division{25}{2}{1} % First dividend, divisor, remainder
+            \Division{12}{2}{0} % Dividend (previous quotient), divisor, remainder
+            \Division{6}{2}{0}  
+            \Division{3}{2}{1}  
+            \FinDivision{1}     % Last remainder.
+
+            \only<2->{
+                % We can draw an arrow jumping from one remainder 
+                % to the next one. Every reminder is a node called
+                % Rdividend. Last remainder is node C.
+                \draw[red,shorten <=1mm, ->, dashed] (C) to[out=-150,in=-65] (R3);
+                \draw[red,shorten <=1mm, ->, dashed] (R3) to[out=-150,in=-65] (R6);
+                \draw[red,shorten <=1mm, ->, dashed] (R6) to[out=-150,in=-65] (R12);
+                \draw[red,shorten <=1mm, ->, dashed] (R12) to[out=-150,in=-65] (R25);
+            }
+        \end{tikzpicture}
+
+        \only<2->{
+            \[
+                25_{10} = 11001_{2}
+            \]
+        }
+    \end{center}
+\end{frame}
+
+\begin{frame}{Números com casas decimais: aritmética de ponto flutuante}
+    \begin{tcolorbox}[colback=red!10]
+        Na \textit{aritmética de ponto flutuante}, um número ''com casas decimais'' é representado
+        na forma:
+        \[
+            \pm (0 . d_1 d_2 d_3 \ldots d_k) \times \beta^e
+        \]
+        onde \(d_ 1 d_2 d_3 \ldots d_k\) é a mantissa, \(\beta\) é a base e \(e\) é o expoente
+    \end{tcolorbox}
+    \pause
+    Na maioria dos sistemas (IEEE-754), temos base 2 com \SI{1}{bit} para sinal e
     \begin{itemize}
-        \item Determine \(x\) tal que \(f(x)=0\) onde
-            \[
-                \color{blue}
-                \boxed{f(x)=x^2+3x-4}
-            \]
-            usando o método de Newton Raphson com derivada analítica
-            \[
-                \color{blue}
-                \boxed{f'(x)=2x+3}
-            \]
+        \item \textit{Precisão simples}: \SI{8}{bits} de expoente e \SI{23}{bits} de mantissa, num total de 
+            \SI{32}{bits} (\SI{4}{bytes})
+        \item \textit{Precisão dupla}: \SI{11}{bits} de expoente e \SI{52}{bits} de mantissa, num total de 
+            \SI{64}{bits} (\SI{8}{bytes})
+        \item Os expoentes são deslocados pela metade \textit{inteira} do maior
+            valor possível (127 ou 1023)
+        \item O maior e o menor expoentes possíveis são reservados para \alert{casos especiais}
+        \item Os números são \textit{normalizados}: \( \pm (1 . d_1 d_2 d_3 \ldots d_k) \times 2^e\) 
+            ao invés de \( \pm (0 . d_1 d_2 d_3 \ldots d_k) \times 2^e\)
+    \end{itemize}
+    \pause
+    \begin{tcolorbox}[colback=blue!10]
+        Qual é o maior e o menor número positivo que pode ser representado no padrão IEEE-754, precisão simples?
+
+        \tiny{Resposta: \(0~00000001~0000 0000 0000 0000 0000 000\) e \(0~11111110~1111 1111 1111 11111 111 111\)}
+    \end{tcolorbox}
+\end{frame}
+
+\begin{frame}{Estudo dirigido}
+    \begin{itemize}
+        \item Converta \num{100.1} e \num{100.5} para o padrão IEEE-754, precisão simples
+        \item Qual dos dois números é representado de forma mais ''exata''?
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Atividade}
-    Determine \(h\) tal que
+% \begin{frame}
+%     \frametitle{Método de Newton-Raphson}
 
-    \[
-        \color{blue}
-        r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}=3
-    \]
-    onde \(r=2\) usando o método de Newton Raphson com derivada analítica
-    \[
-        \color{blue}
-        \frac{d}{dx} \left( 
-            r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}
-        \right)=
-        2\sqrt{h(2r-h)}
-    \]
-\end{frame}
+%     Sendo \(x_0\) uma aproximação inicial (''chute''), podemos obter uma aproximação ''melhor'' através da fórmula
+%     \begin{block}
+%         {}
+%         \[ x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)} \]
+%     \end{block}
+%     onde \(k=0,1,2,\ldots\) é o número da \textbf{iteração}. 
+
+%     O método de Newton-Raphson
+%     \begin{itemize}
+%         \item É um método \textit{aberto}, isto é, é necessário apenas um valor inicial \(x_0\)
+%         \item Algumas vezes \textit{diverge}, ou seja, o resultado obtido em cada iteração se afasta da raiz verdadeira
+%         \item Mas quando há convergência o resultado obtido em cada iteração se aproxima da raiz verdadeira muito mais rápido do que o método da bissecção
+%     \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Atividade}
+%     \begin{itemize}
+%         \item Determine \(x\) tal que \(f(x)=0\) onde
+%             \[
+%                 \color{blue}
+%                 \boxed{f(x)=x^2+3x-4}
+%             \]
+%             usando o método de Newton Raphson com derivada analítica
+%             \[
+%                 \color{blue}
+%                 \boxed{f'(x)=2x+3}
+%             \]
+%     \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Atividade}
+%     Determine \(h\) tal que
+
+%     \[
+%         \color{blue}
+%         r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}=3
+%     \]
+%     onde \(r=2\) usando o método de Newton Raphson com derivada analítica
+%     \[
+%         \color{blue}
+%         \frac{d}{dx} \left( 
+%             r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}
+%         \right)=
+%         2\sqrt{h(2r-h)}
+%     \]
+% \end{frame}
