@@ -383,7 +383,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Exercícios}
+\begin{frame}[label=chant]{Exercícios}
     Determine \(x\) (ou \(h\)) tal que
     \begin{enumerate}
         \item \(r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}=3\) onde \(r=2\)
@@ -524,52 +524,54 @@
     \end{itemize}
 \end{frame}
 
-% \begin{frame}
-%     \frametitle{Método de Newton-Raphson}
+\begin{frame}
+    \frametitle{Método de Newton-Raphson}
 
-%     Sendo \(x_0\) uma aproximação inicial (''chute''), podemos obter uma aproximação ''melhor'' através da fórmula
-%     \begin{block}
-%         {}
-%         \[ x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)} \]
-%     \end{block}
-%     onde \(k=0,1,2,\ldots\) é o número da \textbf{iteração}. 
+    Sendo \(x_0\) uma aproximação inicial (''chute''), podemos obter uma aproximação ''melhor'' através da fórmula
+    \begin{block}
+        {}
+        \[ x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)} \]
+    \end{block}
+    onde \(k=0,1,2,\ldots\) é o número da \textbf{iteração}. 
 
-%     O método de Newton-Raphson
-%     \begin{itemize}
-%         \item É um método \textit{aberto}, isto é, é necessário apenas um valor inicial \(x_0\)
-%         \item Algumas vezes \textit{diverge}, ou seja, o resultado obtido em cada iteração se afasta da raiz verdadeira
-%         \item Mas quando há convergência o resultado obtido em cada iteração se aproxima da raiz verdadeira muito mais rápido do que o método da bissecção
-%     \end{itemize}
-% \end{frame}
+    O método de Newton-Raphson
+    \begin{itemize}
+        \item É um método \textit{aberto}, isto é, é necessário apenas um valor inicial \(x_0\)
+        \item Algumas vezes \textit{diverge}, ou seja, o resultado obtido em cada iteração se afasta da raiz verdadeira
+        \item Mas quando há convergência o resultado obtido em cada iteração se aproxima da raiz verdadeira muito mais rápido do que o método da bissecção
+    \end{itemize}
+\end{frame}
 
-% \begin{frame}{Atividade}
-%     \begin{itemize}
-%         \item Determine \(x\) tal que \(f(x)=0\) onde
-%             \[
-%                 \color{blue}
-%                 \boxed{f(x)=x^2+3x-4}
-%             \]
-%             usando o método de Newton Raphson com derivada analítica
-%             \[
-%                 \color{blue}
-%                 \boxed{f'(x)=2x+3}
-%             \]
-%     \end{itemize}
-% \end{frame}
+\begin{frame}{Atividade}
+    \begin{itemize}
+        \item Determine \(x\) tal que \(f(x)=0\) onde
+            \[
+                \color{blue}
+                \boxed{f(x)=x^2+3x-4}
+            \]
+            usando o método de Newton Raphson com derivada analítica
+            \[
+                \color{blue}
+                \boxed{f'(x)=2x+3}
+            \]
+    \end{itemize}
+\end{frame}
 
-% \begin{frame}{Atividade}
-%     Determine \(h\) tal que
+\begin{frame}{Atividade}
+    Determine \(h\) tal que
 
-%     \[
-%         \color{blue}
-%         r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}=3
-%     \]
-%     onde \(r=2\) usando o método de Newton Raphson com derivada analítica
-%     \[
-%         \color{blue}
-%         \frac{d}{dx} \left( 
-%             r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}
-%         \right)=
-%         2\sqrt{h(2r-h)}
-%     \]
-% \end{frame}
+    \[
+        \color{blue}
+        r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}=3
+    \]
+    onde \(r=2\) usando o método de Newton Raphson com derivada analítica
+    \[
+        \color{blue}
+        \frac{d}{dx} \left( 
+            r^2 \arccos{\left(\frac{r-h}{r}\right)}-(r-h)\sqrt{r^2-(r-h)^2}
+        \right)=
+        2\sqrt{h(2r-h)}
+    \]
+\end{frame}
+
+\againframe<2->{chant}
