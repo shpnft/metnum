@@ -537,21 +537,6 @@
 \end{frame}
 
 \begin{frame}{Atividade}
-    \begin{itemize}
-        \item Determine \(x\) tal que \(f(x)=0\) onde
-            \[
-                \color{blue}
-                \boxed{f(x)=x^2+3x-4}
-            \]
-            usando o método de Newton Raphson com derivada analítica
-            \[
-                \color{blue}
-                \boxed{f'(x)=2x+3}
-            \]
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Atividade}
     Determine \(h\) tal que
 
     \[
@@ -570,9 +555,53 @@
 
 \againframe<2->{chant}
 
-\begin{frame}{Estudo dirigido}
+\begin{frame}{Estudo dirigido: primeira lista de exercícios para a prova}
+    Converta para o padrão IEEE-754, precisão simples:
+    \begin{enumerate}
+        \item \num{0.1} \(\color{red} \implies 0~01111011~10011001100110011001101\)
+        \item \num{0.5} \(\color{red} \implies 0~01111110~00000000000000000000000\)
+        \item \num{3.1415926535} \(\color{red} \implies 0~10000000~10010010000111111011011\)
+        \item \num{6.02214076E+23} \(\color{red} \implies 0~11001101~11111110000110000101110\)
+        \item \num{1.25663706212e-6} \(\color{red} \implies 0~01101011~01010001010100110111000\)
+        \item \num{8.8541878176e-12} \(\color{red} \implies 0~01011010~00110111100001110111000\)
+        \item \num{-100.25} \(\color{red} \implies 1~10000101~10010001000000000000000\)
+        \item \num{33.16e3} \(\color{red} \implies 0~10001110~00000011000100000000000\)
+        \item \num{332946.0487} \(\color{red} \implies 0~10010001~01000101001001001000010\)
+        \item \num{9.02779589690e-36} \(\color{red} \implies 0~00001010~01111111111111111111111\)
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Erros}
+    Erro absoluto: 
+    \[
+        \left| \text{valor exato} - \text{valor aproximado} \right|
+    \]
+
+    Erro relativo: 
+    \[
+        \left| \frac{\text{valor exato} - \text{valor aproximado}}{\text{valor exato}}  \right|\times 100\%
+    \]
+    \begin{block}
+        {}
+        \begin{itemize}
+            \item Na maioria dos problemas, o erro relativo é o que se quer obter, pois ele permite avaliar o quanto nossa resposta está distante da resposta certa em unidades relativas. Por exemplo, um erro relativo de 5\% é pequeno, enquanto um erro relativo de 30\% é grande. 
+            \item Já o erro absoluto não nos dá essa informação. Por exemplo, um erro de \SI{50}{cm} é grande ou pequeno? Depende, se for na medida da altura de uma pessoa é um erro enorme, mas se for na medida da distância entre duas cidades é desprezível...
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}[c]
     \begin{itemize}
-        \item Converta \num{100.1} e \num{100.5} para o padrão IEEE-754, precisão simples
-        \item Qual dos dois números é representado de forma mais ''exata''?
+        \item Imposto pago pelos brasileiros em 2022\footnote{https://impostometro.com.br/}:
+            \num{2890489835290.33}
+        \item Representação em IEEE-754, precisão simples: 
+            \(0~1010 1000~0101 0000 0111 1111 0101 000\)
+        \item Conversão para decimal: \num{2890489921536}
+        \item Erro absoluto: \num{86245.67}
+        \item Erro relativo: \(\approx\) 1 real para cada 33 milhões de reais
     \end{itemize}
 \end{frame}
+
+\begin{frame}{Propagação de erros na soma e subtração}
+ \end{frame}
