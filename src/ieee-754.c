@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
         char expoente_bin[9];
         char mantissa[25];
         double m;
-        int s[25], e, j;
+        int s, e;
 
         numero = atof(argv[1]);
 
@@ -23,17 +23,16 @@ int main(int argc, char **argv) {
 
         m = numero - pow(2, expoente);
 
-        j = 0;
-        s[0] = -1;
+        s = -1;
         for (int i = 0; i < 24; i++) {
-                if (m > 0 && s[j] < 0) {
+                if (m > 0 && s < 0) {
                         e = floor(log(m) / log(2));
-                        s[j] = expoente - e - 1;
+                        s = expoente - e - 1;
                         m = m - pow(2, e);
                 }
-                if (i == s[j]) {
+                if (i == s) {
                         mantissa[i] = '1';
-                        s[++j] = -1;
+                        s = -1;
                 } else
                         mantissa[i] = '0';
         }
