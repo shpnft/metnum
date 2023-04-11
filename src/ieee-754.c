@@ -4,27 +4,46 @@
 
 int main(int argc, char **argv) {
         double numero;
-        double m,s;
-        int expoente,e,c, mantissa;
+        char sinal;
+        int expoente;
+        char expoente_bin[9];
+        char mantissa[25];
+        double m;
+        int s[25], e, j;
+
         numero = atof(argv[1]);
 
+        if (numero > 0) sinal = '0';
+        else sinal = '1';
+
+        numero = fabs(numero);
         expoente=floor(log(numero)/log(2));
 
         m=numero - pow(2,expoente);
-        e=expoente;
-        if (m > 0) e = floor(log(m)/log(2));
-        s=0;
-        for (int i=0; i < 23; i++) {
-                if (i == expoente-e-1) {
-                        s+=pow(2,22-expoente+e+1);
+
+        j=0;
+        s[0]=-1;
+        for (int i=0; i < 24; i++) {
+                if (m > 0 && s[j] < 0) {
+                        e=floor(log(m)/log(2));
+                        s[j] = expoente - e -1;
                         m = m - pow(2,e);
-                        if (m > 0) e = floor(log(m)/log(2));
                 }
+                if (i == s[j]) {
+                        mantissa[i]='1';
+                        s[++j]=-1;
+                } else mantissa[i]= '0';
         }
-        c=0;
-        if (expoente-e-1 == 23) c=1;
-        mantissa=(int) s+c;
-        printf("%d %d\n", expoente+127, mantissa);
+        mantissa[24]='\0';
+
+        expoente=expoente+127;
+        for (int i=7;i>=0; i--) {
+                expoente_bin[i]=expoente%2+'0';
+                expoente=expoente/2;
+        }
+        expoente_bin[8]='\0';
+
+        printf("%c%s%s\n", sinal, expoente_bin, mantissa);
         return 0;
 }
 
