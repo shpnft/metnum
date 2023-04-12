@@ -1,8 +1,6 @@
 from math import floor, log
 import sys
 
-mantissa = ""
-
 numero = float(sys.argv[1])
 
 if numero > 0:
@@ -14,7 +12,7 @@ numero = abs(numero)
 expoente = floor(log(numero) / log(2))
 
 m = numero - 2**expoente
-
+mantissa = ""
 s = -1
 for i in range(24):
     if m > 0 and s < 0:
