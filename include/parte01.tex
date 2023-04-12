@@ -555,20 +555,43 @@
 
 \againframe<2->{chant}
 
+\newcounter{magicrownumbers}
+\newcommand{\rownumber}{\stepcounter{magicrownumbers}\usebeamercolor[fg]{enumerate item}\arabic{magicrownumbers}.}
 \begin{frame}{Estudo dirigido: primeira lista de exercícios para a prova}
     Converta para o padrão IEEE-754, precisão simples:
-    \begin{enumerate}
-        \item \num{0.1} \(\color{red} \implies 0~01111011~10011001100110011001101\)
-        \item \num{0.5} \(\color{red} \implies 0~01111110~00000000000000000000000\)
-        \item \num{3.1415926535} \(\color{red} \implies 0~10000000~10010010000111111011011\)
-        \item \num{6.02214076E+23} \(\color{red} \implies 0~11001101~11111110000110000101110\)
-        \item \num{1.25663706212e-6} \(\color{red} \implies 0~01101011~01010001010100110111000\)
-        \item \num{8.8541878176e-12} \(\color{red} \implies 0~01011010~00110111100001110111000\)
-        \item \num{-100.25} \(\color{red} \implies 1~10000101~10010001000000000000000\)
-        \item \num{33.16e3} \(\color{red} \implies 0~10001110~00000011000100000000000\)
-        \item \num{332946.0487} \(\color{red} \implies 0~10010001~01000101001001001000010\)
-        \item \num{9.02779589690e-36} \(\color{red} \implies 0~00001010~01111111111111111111111\)
-    \end{enumerate}
+
+    \begin{tabular}{lll}
+        \rownumber & \num{0.5} & \(\color{red} \implies 0~01111110~00000000000000000000000\) \\
+        \rownumber & \num{0.1} & \(\color{red} \implies 0~01111011~10011001100110011001101\) \\
+        \rownumber & \num{3.1415926535} & \(\color{red} \implies 0~10000000~10010010000111111011011\) \\
+        \rownumber & \num{1.9999999981373549} & \(\color{red} \implies 0~10000000~00000000000000000000000 \) \\
+        \rownumber & \num{6.02214076E+23} & \(\color{red} \implies 0~11001101~11111110000110000101110\) \\
+        \rownumber & \num{1.25663706212e-6} & \(\color{red} \implies 0~01101011~01010001010100110111000\) \\
+        \rownumber & \num{8.8541878176e-12} & \(\color{red} \implies 0~01011010~00110111100001110111000\) \\
+        \rownumber & \num{-100.25} & \(\color{red} \implies 1~10000101~10010001000000000000000\) \\
+        \rownumber & \num{332946.0487} & \(\color{red} \implies 0~10010001~01000101001001001000010\) \\
+        \rownumber & \num{9.02779589690e-36} & \(\color{red} \implies 0~00001010~01111111111111111111111\)
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Código em C: cabeçalho, \textit{main}, declaração de variáveis}
+    \lstinputlisting[language=C, firstline=1, lastline=12]{src/ieee-754.c}
+\end{frame}
+
+\begin{frame}{Código em C: leitura do número, determinação do sinal e expoente}
+    \lstinputlisting[language=C, firstline=14, lastline=22]{src/ieee-754.c}
+\end{frame}
+
+\begin{frame}{Código em C: determinação da mantissa com 24 bits}
+    \lstinputlisting[language=C, firstline=24, lastline=38]{src/ieee-754.c}
+\end{frame}
+
+\begin{frame}{Código em C: \textit{arredondamento} da mantissa para 23 bits}
+    \lstinputlisting[language=C, firstline=40, lastline=52]{src/ieee-754.c}
+\end{frame}
+
+\begin{frame}{Código em C: adaptação/correção do expoente, saída de dados e finalização}
+    \lstinputlisting[language=C, firstline=54, lastline=63]{src/ieee-754.c}
 \end{frame}
 
 \begin{frame}
@@ -602,6 +625,3 @@
         \item Erro relativo: \(\approx\) 1 real para cada 33 milhões de reais
     \end{itemize}
 \end{frame}
-
-\begin{frame}{Propagação de erros na soma e subtração}
- \end{frame}
