@@ -1,0 +1,52 @@
+\documentclass[brazilian, fleqn]{article}
+
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{amssymb,amsfonts,amsmath}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage[left=2cm, bottom=2cm, right=1.5cm, top=1.5cm]{geometry}
+
+\usepackage{siunitx}
+\sisetup{locale = FR}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbset{boxrule=0pt, top=0pt, bottom=0pt, skin=bicolor, interior style={left color=black!10}}
+
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\tg}{tg}
+
+\newcommand{\bob}[1]{\num{#1}}
+\newcommand{\bib}[1]{\phantom{\num{#1}}}
+
+\begin{document}
+\begin{tabular}{c|c|c|c|c|c}
+    \(x_a\) & \(x_b\) & \(x_r\) & \(f(x_a)\) & \(f(x_b)\) & \(f(x_r)\) \\ \hline
+    \bob{0.000000} & \bob{1.000000} & \bob{0.500000} & \bob{1.000000} & \bob{-0.632121} & \bob{0.106531} \\ \hline
+    \bob{0.500000} & \bib{1.000000} & \bib{0.750000} & \bib{0.106531} & \bob{-0.632121} & \bob{-0.277633} \\ \hline
+    \bob{0.500000} & \bib{0.750000} & \bob{0.625000} & \bob{0.106531} & \bob{-0.277633} & \bib{-0.089739} \\ \hline
+    \bib{0.500000} & \bob{0.625000} & \bob{0.562500} & \bob{0.106531} & \bob{-0.089739} & \bob{0.007283} \\ \hline
+    \bob{0.562500} & \bob{0.625000} & \bob{0.593750} & \bob{0.007283} & \bib{-0.089739} & \bob{-0.041498} \\ \hline
+    \bob{0.562500} & \bib{0.593750} & \bib{0.578125} & \bob{0.007283} & \bib{-0.041498} & \bob{-0.017176} \\ \hline
+    \bib{0.562500} & \bob{0.578125} & \bob{0.570312} & \bib{0.007283} & \bob{-0.017176} & \bib{-0.004964} \\ \hline
+    \bob{0.562500} & \bib{0.570312} & \bob{0.566406} & \bob{0.007283} & \bob{-0.004964} & \bob{0.001155} \\ \hline
+    \bob{0.566406} & \bob{0.570312} & \bib{0.568359} & \bib{0.001155} & \bob{-0.004964} & \bob{-0.001905} \\ \hline
+    \bob{0.566406} & \bob{0.568359} & \bob{0.567383} & \bib{0.001155} & \bib{-0.001905} & \bob{-0.000375} \\ \hline
+    \bib{0.566406} & \bob{0.567383} & \bob{0.566895} & \bob{0.001155} & \bib{-0.000375} & \bob{0.000390} \\ \hline
+    \bob{0.566895} & \bob{0.567383} & \bob{0.567139} & \bob{0.000390} & \bob{-0.000375} & \bib{0.000007} \\ \hline
+    \bib{0.567139} & \bob{0.567383} & \bob{0.567261} & \bob{0.000007} & \bob{-0.000375} & \bib{-0.000184} \\ \hline
+    \bob{0.567139} & \bob{0.567261} & \bob{0.567200} & \bob{0.000007} & \bob{-0.000184} & \bob{-0.000088} \\ \hline
+    \bob{0.567139} & \bob{0.567200} & \bob{0.567169} & \bob{0.000007} & \bob{-0.000088} & \bib{-0.000041} \\ \hline
+    \bib{0.567139} & \bob{0.567169} & \bob{0.567154} & \bob{0.000007} & \bob{-0.000041} & \bob{-0.000017} \\ \hline
+    \bib{0.567139} & \bib{0.567154} & \bob{0.567146} & \bob{0.000007} & \bob{-0.000017} & \bob{-0.000005} \\ \hline
+    \bob{0.567139} & \bob{0.567146} & \bob{0.567142} & \bob{0.000007} & \bob{-0.000005} & \bob{0.000001} \\ \hline
+    \bob{0.567142} & \bob{0.567146} & \bib{0.567144} & \bob{0.000001} & \bib{-0.000005} & \bob{-0.000002} \\ \hline
+    \bib{0.567142} & \bob{0.567144} & \bib{0.567143} & \bob{0.000001} & \bib{-0.000002} & \bob{-0.000000} \\ \hline
+\end{tabular}
+\end{document}
