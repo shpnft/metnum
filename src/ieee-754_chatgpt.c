@@ -20,6 +20,7 @@ int main(int argc, char **argv) {
     Float f;
     f.f = num;
     
+    printf("\'\'%s,\'",argv[1]);
     print_binary(f.i, 32);
     printf("\n");
     
