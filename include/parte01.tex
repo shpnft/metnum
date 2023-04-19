@@ -614,14 +614,73 @@
     \end{block}
 \end{frame}
 
-\begin{frame}[c]
+\begin{frame}{Estimativa do erro absoluto no método da bissecção}
     \begin{itemize}
-        \item Imposto pago pelos brasileiros em 2022\footnote{https://impostometro.com.br/}:
-            \num{2890489835290.33}
-        \item Representação em IEEE-754, precisão simples: 
-            \(0~1010 1000~0101 0000 0111 1111 0101 000\)
-        \item Conversão para decimal: \num{2890489921536}
-        \item Erro absoluto: \num{86245.67}
-        \item Erro relativo: \(\approx\) 1 real para cada 33 milhões de reais
+        \item O método da bissecção nos permite obter o número de iterações
+            necessárias para se chegar a uma \textbf{estimativa} do
+            erro absoluto antes de começar os cálculos
+
+        \item Se $\Delta x^0=x_b-x_a$, temos que na próxima iteração 
+            \[ 
+                \Delta x^1=\frac{\Delta x^0}{2}
+            \]
+            pois no método da bissecção o intervalo é reduzido pela metade em cada iteração
+
+        \item Assim, uma estimativa do erro absoluto na iteração $i$ é dado por 
+            \[
+                E^i_a = \frac{\Delta x^0}{2^i}
+            \]
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplos}
+    \begin{enumerate}
+        \item Se o intervalo inicial é $x_a=1$ e $x_b=3$, depois de quantas
+            iterações teremos um erro absoluto menor que $0,0001$?
+            \pause
+            \[
+                0,0001=\frac{3-1}{2^i}=\frac{2}{2^i} ~\rightarrow~ 2^i = \num{2e4}
+            \]
+            \pause
+            \[
+                i=\log_2 \num{2e4} = \frac{\ln \num{2e4}}{\ln 2}=\num{14.288}
+            \]
+
+            Assim, após 15 iterações teremos um erro absoluto menor que $0,0001$.
+
+        \item Qual o número de iterações necessárias para encontrar um erro absoluto menor que $0,0001$ se usarmos $x_a=3$ e $x_b=4$?
+            \pause
+            \begin{align*}
+& 0,0001 = \frac{4-3}{2^i} ~\rightarrow~ 2^i=\num{1e4} \\
+& i=\log_2 \num{1e4}=\frac{\ln \num{1e+04}}{\ln 2}=13,288
+            \end{align*}
+
+            Ou seja, 14 iterações
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Estimativa do erro relativo}
+
+    Assumindo que \textit{a cada iteração o valor obtido se aproxima mais do valor exato}, temos
+    \[
+        \left| \frac{\text{valor da última iteração} - \text{valor da penúltima iteração}}
+        {\text{valor da última iteração}}  \right| \times 100\%
+    \]
+
+    Exemplo:
+
+    \centering
+    \begin{tabular}{cccc}
+        x & f(x) & f'(x) & Estimativa do erro relativo \\ \hline
+        10,000000 & -9,999955 & -1,000045 & - \\ \hline
+        0,000499 & 0,999001 & -1,999501 & 2.002.396,890438 \\ \hline
+        0,500125 & 0,106330 & -1,606455 & 99,900150 \\ \hline
+        0,566314 & 0,001300 & -1,567614 & 11,687744 \\ \hline
+        0,567143 & 0,000000 & -1,567143 & 0,146179 \\ \hline
+        0,567143 & 0,000000 & -1,567143 & 0,000022 \\ \hline
+        0,567143 & 0,000000 & -1,567143 & 0,000000 \\ \hline
+        0,567143 & 0,000000 & -1,567143 & 0,000000 \\ \hline
+        0,567143 & 0,000000 & -1,567143 & 0,000000 
+    \end{tabular}
 \end{frame}

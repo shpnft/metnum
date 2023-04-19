@@ -57,6 +57,6 @@ int main(int argc, char **argv) {
     }
     expoenteBin[8] = '\0';
 
-    printf("\'\'%s,\'%c%s%s\n",argv[1], sinal, expoenteBin, mantissa);
+    printf("%c%s%s\n",sinal, expoenteBin, mantissa);
     return 0;
 }
