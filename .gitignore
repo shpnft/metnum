@@ -9,3 +9,4 @@
 *.fdb_latexmk
 *.synctex.gz
 src/ieee-754
+src/ieee-754_chatgpt
