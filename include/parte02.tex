@@ -1,4 +1,3 @@
-
 \begin{frame}
     \frametitle{Sistemas de equações lineares}
     Um sistema de equações lineares consiste em um conjunto de $m$ equações lineares com $n$ variáveis de $x_i$:
@@ -44,162 +43,189 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Sistema triangular superior}
+    \frametitle{Sistema triangular superior}
 
-Seja um sistema triangular superior 3x3
-\[
-\begin{bmatrix}
-a_{11} & a_{12} & a_{13} \\
-0      & a_{22} & a_{23} \\
-0      & 0      & a_{33}
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\ x_2 \\ x_3
-\end{bmatrix}
-=
-\begin{bmatrix}
-b_1 \\ b_2 \\ b_3
-\end{bmatrix}
-\]
+    Seja um sistema triangular superior 3x3
+    \[
+        \begin{bmatrix}
+            a_{11} & a_{12} & a_{13} \\
+            0      & a_{22} & a_{23} \\
+            0      & 0      & a_{33}
+        \end{bmatrix}
+        \begin{bmatrix}
+            x_1 \\ x_2 \\ x_3
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            b_1 \\ b_2 \\ b_3
+        \end{bmatrix}
+    \]
 
-O vetor solução \( x\) pode ser obtido através de substituições retroativas:
-\begin{align*}
-x_3 &= \frac{b_3}{a_{33}} \\
-x_2 & = \frac{b_2 - a_{23}x_3}{a_{22}} \\
-x_1 &= \frac{b_1 - a_{12}x_2 - a_{13}x_3}{a_{11}}
-\end{align*}
+    O vetor solução \( x\) pode ser obtido através de substituições retroativas:
+    \begin{align*}
+        x_3 &= \frac{b_3}{a_{33}} \\
+        x_2 & = \frac{b_2 - a_{23}x_3}{a_{22}} \\
+        x_1 &= \frac{b_1 - a_{12}x_2 - a_{13}x_3}{a_{11}}
+    \end{align*}
 \end{frame}
 
 \begin{frame}
-Ou seja,
+    Ou seja,
 
-\[
-x_i = \frac{b_i - \sum_{j=i+1}^{3} {a_{ij} x_j}}{a_{ii}}
-\]
-onde \(i = 3, 2, 1\). Para um sistema \(n\) x \(n\), temos
-\[
-x_i = \frac{b_i - \sum_{j=i+1}^{n} {a_{ij} x_j}}{a_{ii}}
-\]
-onde \(i = n, n-1, n-2, \ldots , 1\)
+    \[
+        x_i = \frac{b_i - \sum_{j=i+1}^{3} {a_{ij} x_j}}{a_{ii}}
+    \]
+    onde \(i = 3, 2, 1\). Para um sistema \(n\) x \(n\), temos
+    \[
+        x_i = \frac{b_i - \sum_{j=i+1}^{n} {a_{ij} x_j}}{a_{ii}}
+    \]
+    onde \(i = n, n-1, n-2, \ldots , 1\)
 
-\begin{block}{Eliminação de Gauss}
-O método de eliminação de Gauss consiste em transformar um sistema de equações lineares em um sistema triangular superior equivalente e obter o vetor solução através de substituições retroativas
-\end{block}
+    \begin{block}{Eliminação de Gauss}
+        O método de eliminação de Gauss consiste em transformar um sistema de equações lineares em um sistema triangular superior equivalente e obter o vetor solução através de substituições retroativas
+    \end{block}
 \end{frame}
 
 \begin{frame}
-Um sistema linear pode ser transformado em outro equivalente através das operações
-\begin{itemize}
-\item Trocar a ordem de duas equações
-\item Multiplicar uma equação por uma constante não nula
-\item Somar duas equações
-\end{itemize}
+    Um sistema linear pode ser transformado em outro equivalente através das operações
+    \begin{itemize}
+        \item Trocar a ordem de duas equações
+        \item Multiplicar uma equação por uma constante não nula
+        \item Somar duas equações
+    \end{itemize}
 
-\begin{block}
-{Exemplo}
-Resolva o seguinte sistema usando eliminação de Gauss
+    \begin{block}
+        {Exemplo}
+        Resolva o seguinte sistema usando eliminação de Gauss
 
-\[
-\begin{bmatrix}
-10 & 3 & -2 \\ 2 & 8 & -1 \\ 1 & 1 & 5
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\ x_2 \\ x_3
-\end{bmatrix}
-=
-\begin{bmatrix}
-57 \\ 20 \\ -4
-\end{bmatrix}
-\]
+        \[
+            \begin{bmatrix}
+                10 & 3 & -2 \\ 2 & 8 & -1 \\ 1 & 1 & 5
+            \end{bmatrix}
+            \begin{bmatrix}
+                x_1 \\ x_2 \\ x_3
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                57 \\ 20 \\ -4
+            \end{bmatrix}
+        \]
 
-\end{block}
+    \end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Primeira etapa}
-Como as operações envolvem as equações, tanto \(A\) quanto \(b\) são modificadas. Assim, é interessante construir uma matriz ''aumentada'' \([A,b]\):
+    \frametitle{Primeira etapa}
+    Como as operações envolvem as equações, tanto \(A\) quanto \(b\) são modificadas. Assim, é interessante construir uma matriz ''aumentada'' \([A,b]\):
 
-\[
-[A,b] =
-\left[
-\begin{array}{ccc|c}
-10 & 3 & -2 & 57 \\ 2 & 8 & -1 & 20 \\ 1 & 1 & 5 & -4
-\end{array}
-\right]
-\]
+    \[
+        [A,b] =
+        \left[
+            \begin{array}{ccc|c}
+                10 & 3 & -2 & 57 \\ 2 & 8 & -1 & 20 \\ 1 & 1 & 5 & -4
+            \end{array}
+        \right]
+    \]
 
-de maneira que as operações ocorrendo em \(A\) também ocorram em \(b\). 
+    de maneira que as operações ocorrendo em \(A\) também ocorram em \(b\). 
 
-\begin{block}
-{}
-Em uma matriz triangular superior, todos os elementos abaixo da diagonal são nulos. Assim, devemos zerar todos os elementos abaixo da diagonal
-\end{block}
+    \begin{block}
+        {}
+        Em uma matriz triangular superior, todos os elementos abaixo da diagonal são nulos. Assim, devemos zerar todos os elementos abaixo da diagonal
+    \end{block}
 
 \end{frame}
 
 \begin{frame}
-\frametitle{Segunda etapa}
+    \frametitle{Segunda etapa}
 
-\begin{enumerate}
-\item ''Somamos'' a segunda equação (\(L_2\)) com a primeira (\(L_1\)) multiplicada por uma constante, de forma que o elemento \(a_{21} = 0\)
-\[
-L_2 \leftarrow L_2 - \frac{a_{21}}{a_{11}} L_1
-\] 
-\item ''Somamos'' a terceira equação (\(L_3\)) com a primeira (\(L_1\)) multiplicada por uma constante, de forma que o elemento \(a_{31} = 0\)
-\[
-L_3 \leftarrow L_3 - \frac{a_{31}}{a_{11}} L_1
-\] 
-\end{enumerate}
-\[
-\left[
-\begin{array}{ccc|c}
-10 & 3 & -2 & 57 \\ 2 & 8 & -1 & 20 \\ 1 & 1 & 5 & -4
-\end{array}
-\right]
-\rightarrow
-\left[
-\begin{array}{ccc|c}
-10 & 3 & -2 & 57 \\ 0 & 37/5 & -3/5 & 43/5 \\ 0 & 7/10 & 26/5 & -97/10
-\end{array}
-\right]
-\]
+    \begin{enumerate}
+        \item ''Somamos'' a segunda equação (\(L_2\)) com a primeira (\(L_1\)) multiplicada por uma constante, de forma que o elemento \(a_{21} = 0\)
+            \[
+                L_2 \leftarrow L_2 - \frac{a_{21}}{a_{11}} L_1
+            \] 
+        \item ''Somamos'' a terceira equação (\(L_3\)) com a primeira (\(L_1\)) multiplicada por uma constante, de forma que o elemento \(a_{31} = 0\)
+            \[
+                L_3 \leftarrow L_3 - \frac{a_{31}}{a_{11}} L_1
+            \] 
+    \end{enumerate}
+    \[
+        \left[
+            \begin{array}{ccc|c}
+                10 & 3 & -2 & 57 \\ 2 & 8 & -1 & 20 \\ 1 & 1 & 5 & -4
+            \end{array}
+        \right]
+        \rightarrow
+        \left[
+            \begin{array}{ccc|c}
+                10 & 3 & -2 & 57 \\ 0 & 37/5 & -3/5 & 43/5 \\ 0 & 7/10 & 26/5 & -97/10
+            \end{array}
+        \right]
+    \]
 \end{frame}
 
 \begin{frame}
-\frametitle{Terceira etapa}
-\begin{enumerate}
-\item ''Somamos'' a terceira equação (\(L_3\)) com a segunda (\(L_2\)) multiplicada por uma constante, de forma que o elemento \(a_{32} = 0\)
-\[
-L_3 \leftarrow L_3 - \frac{a_{32}}{a_{22}} L_2
-\] 
-\end{enumerate}
-\[
-\left[
-\begin{array}{ccc|c}
-10 & 3 & -2 & 57 \\ 0 & 37/5 & -3/5 & 43/5 \\ 0 & 7/10 & 26/5 & -97/10
-\end{array}
-\right]
-\rightarrow
-\left[
-\begin{array}{ccc|c}
-10 & 3 & -2 & 57 \\ 0 & 37/5 & -3/5 & 43/5 \\ 0 & 0 & 389/74 & -389/37
-\end{array}
-\right]
-\]
+    \frametitle{Terceira etapa}
+    \begin{enumerate}
+        \item ''Somamos'' a terceira equação (\(L_3\)) com a segunda (\(L_2\)) multiplicada por uma constante, de forma que o elemento \(a_{32} = 0\)
+            \[
+                L_3 \leftarrow L_3 - \frac{a_{32}}{a_{22}} L_2
+            \] 
+    \end{enumerate}
+    \[
+        \left[
+            \begin{array}{ccc|c}
+                10 & 3 & -2 & 57 \\ 0 & 37/5 & -3/5 & 43/5 \\ 0 & 7/10 & 26/5 & -97/10
+            \end{array}
+        \right]
+        \rightarrow
+        \left[
+            \begin{array}{ccc|c}
+                10 & 3 & -2 & 57 \\ 0 & 37/5 & -3/5 & 43/5 \\ 0 & 0 & 389/74 & -389/37
+            \end{array}
+        \right]
+    \]
 \end{frame}
 
 \begin{frame}
-\frametitle{Quarta etapa}
-Resolvemos o sistema triangular superior usando a expressão
-\[
-x_i = \frac{b_i - \sum_{j=i+1}^{n} {a_{ij} x_j}}{a_{ii}}
-\]
-onde \(i = n, n-1, n-2, \ldots , 1\)
+    \frametitle{Quarta etapa}
+    Resolvemos o sistema triangular superior usando a expressão
+    \[
+        x_i = \frac{b_i - \sum_{j=i+1}^{n} {a_{ij} x_j}}{a_{ii}}
+    \]
+    onde \(i = n, n-1, n-2, \ldots , 1\)
 
-\begin{align*}
-x_3 &= \frac{-389/37}{389/74}=-2 \\
-x_2 & =\frac{43/5 - (-3/5)*(-2)}{37/5}=1 \\
-x_1 &= \frac{57-3*1-(-2)*(-2)}{10} = 5
-\end{align*}
+    \begin{align*}
+        x_3 &= \frac{-389/37}{389/74}=-2 \\
+        x_2 & =\frac{43/5 - (-3/5)*(-2)}{37/5}=1 \\
+        x_1 &= \frac{57-3*1-(-2)*(-2)}{10} = 5
+    \end{align*}
 
+\end{frame}
+
+
+\begin{frame}{Sistema de equações lineares - planilha eletrônica}
+    \begin{itemize}
+        \item Seja o sistema na forma matricial \(Ax=b\):
+            \[
+                \begin{bmatrix}
+                    a_{11} & a_{12} & a_{13} & \cdots & a_{1n}  \\
+                    a_{21} & a_{22} & a_{23} & \cdots & a_{2n}  \\
+                    a_{31} & a_{32} & a_{33} & \cdots & a_{3n}  \\
+                           &        &        & \vdots &         \\
+                    a_{m1} & a_{m2} & a_{m3} & \cdots & a_{mn}
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x_1 \\ x_2 \\ x_3 \\ \vdots \\ x_n
+                \end{bmatrix}=
+                \begin{bmatrix}
+                    b_1 \\ b_2 \\ b_3 \\ \vdots \\ b_m
+                \end{bmatrix}
+            \]
+        \item Como vimos, podemos resolvê-lo encontrando a matriz inversa de \(A\)
+            \[
+                Ax=b \implies x=A^{-1}b
+            \]
+        \item Para matrizes pequenas, podemos usar as funções \texttt{MATRIZ.MULT} e \texttt{MATRIZ.INVERSO}
+    \end{itemize}
 \end{frame}
