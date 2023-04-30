@@ -1,0 +1,44 @@
+\documentclass[brazilian, fleqn]{article}
+
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{amssymb,amsfonts,amsmath}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage[left=2cm, bottom=2cm, right=1.5cm, top=1.5cm]{geometry}
+
+\usepackage{siunitx}
+\sisetup{locale = FR}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbset{boxrule=0pt, top=0pt, bottom=0pt, skin=bicolor, interior style={left color=black!10}}
+
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\tg}{tg}
+
+\begin{document}
+\section*{\centering Questão de aluno 30/04/2023}
+\begin{itemize}
+    \item Temos que \(T(x,y)=(x+1,y)\)
+    \item Para ser linear, \textit{se eu não me engano}, temos que ter \(T(\alpha u + \beta v)=\alpha T(u)+\beta T(v)\)
+    \item Sendo assim, vamos testar:
+        \begin{gather}
+            u=(x_1,y_1) \\
+            v=(x_2,y_2) \\
+            \alpha u + \beta v = (\alpha x_1 +  \beta x_2, \alpha y_1 + \beta y_2) \\
+            T(u)=T(x_1,y_1)=(x_1+1,y_1) \label{eq:1} \\
+            T(v)=T(x_2,y_2)=(x_2+1,y_2) \label{eq:2} \\
+            T(\alpha u + \beta v) = T(\alpha x_1 +  \beta x_2, \alpha y_1 + \beta y_2) =
+            (\alpha x_1 + \beta x_2 + 1, \alpha y_1 + \beta y_2) = 
+            \alpha (x_1, y_1) + \beta (x_2,y_2) + (1,0) \label{eq:3}
+        \end{gather}
+    \item Como pode ser visto, \eqref{eq:3} não é igual a soma de \eqref{eq:1} e \eqref{eq:2} multiplicados por
+        \(\alpha\) e \(\beta\), respectivamente
+\end{itemize}
+\end{document}

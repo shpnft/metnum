@@ -10,3 +10,4 @@
 *.synctex.gz
 src/ieee-754
 src/ieee-754_chatgpt
+src/__pycache__

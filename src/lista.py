@@ -1,4 +1,5 @@
 from random import random
+
 def printBi(f,xa,xb):
     print("\\begin{tabular}{c|c|c|c|c|c|l}")
     print(f"iteração & \(x_a\) & \(x_b\) & \(x_r\) & \(f(x_a)\) & \(f(x_b)\) & \(f(x_r)\) \\\\ \\hline")
