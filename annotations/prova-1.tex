@@ -1,0 +1,166 @@
+\documentclass[12pt,a4paper,brazilian, fleqn]{article}
+
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{amssymb,amsfonts,amsmath}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections}
+
+\usepackage{tcolorbox}
+\tcbset{boxrule=0pt, top=0pt, bottom=0pt}
+
+\DeclareMathOperator{\sen}{sen}
+
+%https://tex.stackexchange.com/a/100406
+%29.7 cm - 1cm - 1cm - 144.90/28.4 cm = 22.60 cm
+\usepackage[a4paper, totalheight=22.60cm,includeheadfoot,left=1.5cm, right=1.0cm, top=1cm]{geometry}
+\setlength{\headheight}{144.90pt}
+
+\setkeys{Gin}{keepaspectratio}
+
+\newcommand{\cabeca}{
+    \begin{tikzpicture}
+        \node(Logo) {\includegraphics[width=2.5cm]{logo.png}};
+        % \node(Logo) {\includegraphics[width=4.1cm]{logo.png}};
+
+        \node(Local) at (Logo.north east) [anchor=north west, yshift=-0.25cm,
+            align=center, execute at begin node=\setlength{\baselineskip}{3ex}]
+            {
+                \huge{\textbf{Universidade Federal do Amazonas}} \\
+                \large{\textbf{Instituto de Ciências Exatas e Tecnologia}} \\
+                \large{\textbf{\Description}}
+            };
+
+        \node(Ident) at (Local.south west) [anchor=north west, yshift=-0.25cm,
+            align=left, execute at begin node=\setlength{\baselineskip}{2em}]
+            {
+                Professor: {\fontfamily{augie}\selectfont \Professor} \\
+                Aluno:
+            };
+        % \draw [thick] (Logo.south west) -- ($(Logo.south west -| Local.south east)$);
+        % \draw [red] (Logo.north west) rectangle (Logo.south east);
+        % \draw [blue] (Local.north west) rectangle (Local.south east);
+        % \draw [green] (Ident.north west) rectangle (Ident.south east);
+    \end{tikzpicture}
+}
+
+\usepackage{fancyhdr}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[c]{\cabeca}
+\fancyfoot[r]{\fontfamily{augie}\selectfont Boa sorte!}
+
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\newcommand{\ratio}[1]{(#1\% da nota)}
+%-----------------------------------CUT HERE-----------------------------------
+
+\def\Description{Métodos Numéricos -- Prova 1 03/05/2023}
+\def\Professor{Rodrigo de Farias Gomes}
+
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+\usepackage{siunitx}
+\sisetup{locale = FR}
+
+% python -c "from lista import printBi; from math import *; printBi(lambda x: exp(-x)-x, 0, 2)"
+\newcounter{gaga}
+\setcounter{gaga}{1}
+\newcommand{\bhantom}[1]{\color{red}\(r_{\arabic{gaga}}\)\stepcounter{gaga}}
+\newcommand{\bob}[1]{\num{#1}}
+\newcommand{\bib}[1]{\bhantom{\num{#1}}}
+
+\begin{document}
+
+\begin{tcolorbox}[colback=black!10, colframe=black!50, title=Observações]
+    \begin{itemize}
+        \item Todas as páginas com resposta devem ter o nome e matrícula do aluno
+            escritos com caneta no início (cabeçalho) ou no final (rodapé). Páginas
+            que não obedeçam a esse critério não serão usadas na avaliação
+        \item As respostas podem ser escritas com lápis desde que \textbf{legível}
+        \item Os cálculos feitos a mão ou com calculadora, se houverem, devem ser feitos com no mínimo 5 casas decimais
+        \item O código fonte e/ou planilhas usados na obtenção das respostas \textit{podem} ser enviadas no Google Sala de Aula junto com as 
+            folhas com resposta, mas não há garantia que serão usados na avaliação
+    \end{itemize}
+\end{tcolorbox}
+
+\begin{enumerate}
+    \item (50\% da nota) Usando o método da bissecção, complete as tabelas para determinar
+        \(x\) tal que:
+        \begin{enumerate}
+            \item \(e^{x}=-2x\) com \(x_a=\num{-1}\) e \(x_b=\num{1}\) na iteração 0
+                \begin{center}
+                    \setcounter{gaga}{1}
+                    \begin{tabular}{c|c|c|c|c|c|c}
+                        iteração & \(x_a\) & \(x_b\) & \(x_r\) & \(f(x_a)\) & \(f(x_b)\) & \(f(x_r)\) \\ \hline
+                        0  & \bob{-1.000000}& \bib{1.000000}& \bob{0.000000}& \bib{-1.632121}& \bob{4.718282}& \bib{1.000000}\\ \hline
+                        1  & \bib{-1.000000}& \bib{0.000000}& \bib{-0.500000}& \bob{-1.632121}& \bob{1.000000}& \bob{-0.393469}\\ \hline
+                        2  & \bob{-0.500000}& \bib{0.000000}& \bib{-0.250000}& \bob{-0.393469}& \bib{1.000000}& \bob{0.278801}\\ \hline
+                        3  & \bib{-0.500000}& \bib{-0.250000}& \bib{-0.375000}& \bib{-0.393469}& \bib{0.278801}& \bib{-0.062711}\\ \hline
+                        4  & \bib{-0.375000}& \bob{-0.250000}& \bob{-0.312500}& \bib{-0.062711}& \bob{0.278801}& \bib{0.106616}\\ \hline
+                        5  & \bib{-0.375000}& \bib{-0.312500}& \bib{-0.343750}& \bib{-0.062711}& \bob{0.106616}& \bob{0.021606}\\ \hline
+                        6  & \bob{-0.375000}& \bib{-0.343750}& \bib{-0.359375}& \bob{-0.062711}& \bib{0.021606}& \bib{-0.020637}\\ \hline
+                        7  & \bib{-0.359375}& \bib{-0.343750}& \bob{-0.351562}& \bib{-0.020637}& \bib{0.021606}& \bib{0.000463}\\ \hline
+                        8  & \bob{-0.359375}& \bib{-0.351562}& \bib{-0.355469}& \bob{-0.020637}& \bob{0.000463}& \bib{-0.010093}\\ \hline
+                        9  & \bib{-0.355469}& \bib{-0.351562}& \bib{-0.353516}& \bib{-0.010093}& \bib{0.000463}& \bob{-0.004816}\\ \hline
+                        10  & \bib{-0.353516}& \bib{-0.351562}& \bib{-0.352539}& \bib{-0.004816}& \bib{0.000463}& \bob{-0.002177}\\ \hline
+                        11  & \bib{-0.352539}& \bib{-0.351562}& \bib{-0.352051}& \bob{-0.002177}& \bob{0.000463}& \bib{-0.000857}\\ \hline
+                        12  & \bib{-0.352051}& \bib{-0.351562}& \bib{-0.351807}& \bib{-0.000857}& \bib{0.000463}& \bob{-0.000197}\\ \hline
+                        13  & \bib{-0.351807}& \bob{-0.351562}& \bib{-0.351685}& \bib{-0.000197}& \bob{0.000463}& \bib{0.000133}\\ \hline
+                        14  & \bob{-0.351807}& \bob{-0.351685}& \bib{-0.351746}& \bib{-0.000197}& \bib{0.000133}& \bib{-0.000032}\\ \hline
+                        15  & \bob{-0.351746}& \bob{-0.351685}& \bob{-0.351715}& \bib{-0.000032}& \bob{0.000133}& \bib{0.000050}\\ \hline
+                        16  & \bob{-0.351746}& \bib{-0.351715}& \bib{-0.351730}& \bib{-0.000032}& \bib{0.000050}& \bib{0.000009}\\ \hline
+                        17  & \bib{-0.351746}& \bib{-0.351730}& \bob{-0.351738}& \bib{-0.000032}& \bib{0.000009}& \bib{-0.000012}\\ \hline
+                        18  & \bob{-0.351738}& \bib{-0.351730}& \bib{-0.351734}& \bob{-0.000012}& \bib{0.000009}& \bob{-0.000001}\\ \hline
+                        19  & \bib{-0.351734}& \bib{-0.351730}& \bob{-0.351732}& \bib{-0.000001}& \bib{0.000009}& \bob{0.000004}\\ \hline
+                    \end{tabular}
+                \end{center}
+
+                \newpage
+            \item \(\ln{x}=-2x\) com \(x_a=\num{0.1}\) e \(x_b=\num{2}\) na iteração 0
+                \begin{center}
+                    \setcounter{gaga}{1}
+                    \begin{tabular}{c|c|c|c|c|c|c}
+                        iteração & \(x_a\) & \(x_b\) & \(x_r\) & \(f(x_a)\) & \(f(x_b)\) & \(f(x_r)\) \\ \hline
+                        0  & \bib{0.100000}& \bib{2.000000}& \bib{1.050000}& \bib{-2.102585}& \bob{4.693147}& \bob{2.148790}\\ \hline
+                        1  & \bib{0.100000}& \bob{1.050000}& \bib{0.575000}& \bob{-2.102585}& \bib{2.148790}& \bib{0.596615}\\ \hline
+                        2  & \bib{0.100000}& \bib{0.575000}& \bob{0.337500}& \bib{-2.102585}& \bib{0.596615}& \bib{-0.411190}\\ \hline
+                        3  & \bib{0.337500}& \bib{0.575000}& \bob{0.456250}& \bob{-0.411190}& \bob{0.596615}& \bib{0.127786}\\ \hline
+                        4  & \bib{0.337500}& \bib{0.456250}& \bob{0.396875}& \bib{-0.411190}& \bib{0.127786}& \bob{-0.130384}\\ \hline
+                        5  & \bob{0.396875}& \bib{0.456250}& \bib{0.426563}& \bib{-0.130384}& \bob{0.127786}& \bob{0.001129}\\ \hline
+                        6  & \bib{0.396875}& \bib{0.426563}& \bib{0.411719}& \bob{-0.130384}& \bib{0.001129}& \bob{-0.063977}\\ \hline
+                        7  & \bob{0.411719}& \bob{0.426563}& \bob{0.419141}& \bib{-0.063977}& \bob{0.001129}& \bob{-0.031268}\\ \hline
+                        8  & \bib{0.419141}& \bib{0.426563}& \bob{0.422852}& \bob{-0.031268}& \bib{0.001129}& \bib{-0.015031}\\ \hline
+                        9  & \bib{0.422852}& \bob{0.426563}& \bob{0.424707}& \bib{-0.015031}& \bib{0.001129}& \bib{-0.006942}\\ \hline
+                        10  & \bib{0.424707}& \bob{0.426563}& \bob{0.425635}& \bib{-0.006942}& \bib{0.001129}& \bob{-0.002904}\\ \hline
+                        11  & \bob{0.425635}& \bob{0.426563}& \bib{0.426099}& \bib{-0.002904}& \bob{0.001129}& \bib{-0.000887}\\ \hline
+                        12  & \bib{0.426099}& \bib{0.426563}& \bib{0.426331}& \bib{-0.000887}& \bib{0.001129}& \bob{0.000121}\\ \hline
+                        13  & \bob{0.426099}& \bob{0.426331}& \bob{0.426215}& \bob{-0.000887}& \bib{0.000121}& \bib{-0.000383}\\ \hline
+                        14  & \bob{0.426215}& \bob{0.426331}& \bob{0.426273}& \bib{-0.000383}& \bib{0.000121}& \bob{-0.000131}\\ \hline
+                        15  & \bob{0.426273}& \bob{0.426331}& \bob{0.426302}& \bib{-0.000131}& \bob{0.000121}& \bib{-0.000005}\\ \hline
+                        16  & \bob{0.426302}& \bob{0.426331}& \bob{0.426316}& \bob{-0.000005}& \bob{0.000121}& \bob{0.000058}\\ \hline
+                        17  & \bob{0.426302}& \bob{0.426316}& \bob{0.426309}& \bib{-0.000005}& \bib{0.000058}& \bib{0.000026}\\ \hline
+                        18  & \bib{0.426302}& \bib{0.426309}& \bib{0.426305}& \bib{-0.000005}& \bib{0.000026}& \bib{0.000011}\\ \hline
+                        19  & \bib{0.426302}& \bib{0.426305}& \bib{0.426303}& \bib{-0.000005}& \bib{0.000011}& \bob{0.000003}\\ \hline
+                    \end{tabular}
+                \end{center}
+        \end{enumerate}
+    \item (50\% da nota) Usando o método de Newton-Raphson com 7 iterações, determine x tal que:
+        \begin{enumerate}
+            \item \(\ln{x}=-2x\), sabendo que \((\ln{x})'=1/x\) e
+                \((-2x)'=-2\). Qual a estimativa do erro relativo do resultado
+                obtido na sétima iteração?
+            \item \(e^{x}=-2x\), sabendo que \((e^{x})'=e^{x}\) e
+                \((-2x)'=-2\). Qual a estimativa do erro relativo do resultado
+                obtido na sétima iteração?
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
