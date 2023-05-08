@@ -229,3 +229,253 @@
         \item Para matrizes pequenas, podemos usar as funções \texttt{MATRIZ.MULT} e \texttt{MATRIZ.INVERSO}
     \end{itemize}
 \end{frame}
+
+\begin{frame}[c]{Planilha eletrônica}
+
+\begin{itemize}
+    \item Temos que \(Ax=b ~\rightarrow~ A^{-1}Ax=A^{-1}b ~\rightarrow~ x=A^{-1}b\)
+    \item A função \texttt{MATRIZ.MULT(matriz1; matriz2)} multiplica duas matrizes
+    \item A função \texttt{MATRIZ.INVERSO(matriz\_quadrada)} calcula a inversa de uma matriz quadrada
+    \item Se colocarmos a matriz \(A\) nas células \texttt{A1:G7} e a matriz \(b\) em \texttt{H1:H7}, a matriz \(x\) pode ser calculada por
+    \begin{center}
+        \texttt{=MATRIZ.MULT(MATRIZ.INVERSO(A1:G7);H1:H7)}
+    \end{center}
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}[c]{Mas nem tudo são flores...}
+ Essas funções têm particularidades dependendo da planilha
+ \begin{itemize}
+        \item \textbf{LibreOffice}: para finalizar a entrada do comando você deve digitar \texttt{Ctrl-Shift-Enter} ao invés de apenas \texttt{Enter}
+        \item \textbf{Excel}: antes de entrar o comando você deve selecionar o número de células que serão ocupadas e para finalizar a entrada do comando você deve digitar \texttt{Ctrl-Shift-Enter} ao invés de apenas \texttt{Enter}
+        \item \textbf{Google Planilhas}: para finalizar a entrada do comando você deve digitar \texttt{Ctrl-Shift-Enter} seguido de \texttt{Enter} ao invés de apenas \texttt{Enter}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Exercícios extras}
+Encontre as soluções dos sistemas lineares abaixo usando uma planilha eletrônica:
+
+\begin{columns}
+    \begin{column}{0.45\textwidth}
+        \begin{enumerate}
+            \item \systeme*{-4x+2y=5,-x-9y+5z=6,x-3y+4z=9} 
+            \item \systeme*{6x-y-8z=-5,-6x+4y-2z=7,4x+9y-8z=-7}
+            \item \systeme*{x-5y+9z=5,y-z=-8,8x-3y+6z=-3}
+        \end{enumerate}
+    \end{column}
+    
+    \begin{column}{0.45\textwidth}
+        \begin{enumerate}\addtocounter{enumi}{3}
+            \item \systeme*{-t-5u+8v+6w=-3,3t+u+4v-w=6,-6t-u+8v-5w=6,-7t+3u-3v=3}
+            \item \systeme*{2t+9u+8v+4w=4,-9t-8u-9v+9w=-5,-7t-7u+2v+4w=-5,3t+6u=4}
+        \end{enumerate}    
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Sistemas não lineares}
+
+O sistema a seguir é formado por um conjunto de duas equações simultâneas não lineares com duas incógnitas
+\[
+\begin{cases}
+x_1^2 + x_1x_2 &= 10 \\
+x_2 + 3x_1x_2^2 &= 57
+\end{cases}
+\]
+
+Podemos expressar esse sistema na forma
+
+\[
+\begin{cases}
+x_1^2 + x_1x_2 -10 &= 0 \\
+x_2 + 3x_1x_2^2 -57 &= 0
+\end{cases}
+\]
+
+ou seja: a solução do sistema são os os valores de $x_1$ e $x_2$ que tornam as equações iguais a zero
+\end{frame}
+
+\begin{frame}[c]
+De forma geral, qualquer sistema não linear pode ser expresso na forma
+\[
+\begin{cases}
+f_1(x_1, x_2, \ldots, x_n) =& 0 \\
+f_2(x_1, x_2, \ldots, x_n) =& 0 \\
+                         \vdots & \\
+f_n(x_1, x_2, \ldots, x_n) =& 0 \\                           
+\end{cases}
+\]
+
+e para encontrar a solução basta encontrar os zeros das funções. O problema reside no fato de $f_1$, $f_2$, $\ldots$, $f_n$ serem funções de mais de uma variável
+\end{frame}
+
+\begin{frame}
+\frametitle{Método de Newton-Raphson}
+Devemos definir um vetor solução inicial $x^0$ e encontrar o vetor solução $x^{k+1}$ através da fórmula
+\[
+\color{blue} 
+x^{k+1}=x^k-J^{-1} f
+\]
+onde
+
+\[
+\color{red}
+J=
+\begin{bmatrix}
+\left. \dfrac{\partial f_1}{\partial x_1}\right|_{x_1^k,x_2^k,\ldots,x^k_N} &
+\left. \dfrac{\partial f_1}{\partial x_2}\right|_{x_1^k,x_2^k,\ldots,x^k_N} & \ldots &
+\left. \dfrac{\partial f_1}{\partial x_N}\right|_{x_1^k,x_2^k,\ldots,x^k_N} \\
+\left. \dfrac{\partial f_2}{\partial x_1}\right|_{x_1^k,x_2^k,\ldots,x^k_N} &
+\left. \dfrac{\partial f_2}{\partial x_2}\right|_{x_1^k,x_2^k,\ldots,x^k_N} & \ldots &
+\left. \dfrac{\partial f_2}{\partial x_N}\right|_{x_1^k,x_2^k,\ldots,x^k_N} \\
+\vdots & \vdots & \ddots & \vdots \\
+\left. \dfrac{\partial f_N}{\partial x_1}\right|_{x_1^k,x_2^k,\ldots,x^k_N} &
+\left. \dfrac{\partial f_N}{\partial x_2}\right|_{x_1^k,x_2^k,\ldots,x^k_N} & \ldots &
+\left. \dfrac{\partial f_N}{\partial x_N}\right|_{x_1^k,x_2^k,\ldots,x^k_N}
+\end{bmatrix}
+\color{black}
+\text{ e }
+\color{magenta}
+f=
+\begin{bmatrix}
+f_1(x_1^k,x_2^k,\ldots,x^k_N) \\
+f_2(x_1^k,x_2^k,\ldots,x^k_N) \\ \vdots \\
+f_N(x_1^k,x_2^k,\ldots,x^k_N)
+\end{bmatrix}
+\]
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Exemplo}
+O sistema
+\[
+\begin{cases}
+x_1^2 + x_1x_2 &= 10 \\
+x_2 + 3x_1x_2^2 &= 57
+\end{cases}
+\]
+tem
+
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\[
+J=
+\begin{bmatrix}
+2x_1 + x_2 & x_1 \\
+3x_2^2 & 1 + 6x_1x_2 
+\end{bmatrix}
+\]
+\end{column}
+
+\begin{column}{0.45\textwidth}
+
+\[
+f=
+\begin{bmatrix}
+x_1^2 + x_1x_2 - 10 \\
+x_2 + 3x_1x_2^2 - 57
+\end{bmatrix}
+\]
+\end{column}
+\end{columns}
+
+Usando 
+\[
+x^0=
+\begin{bmatrix}
+1,5 \\ 3,5
+\end{bmatrix}
+\]
+temos
+
+\begin{columns}
+\begin{column}{0.45\textwidth}
+\[
+J=
+\begin{bmatrix}
+6,5 & 1,5 \\
+36,75 & 32,5 
+\end{bmatrix}
+\]
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\[
+f=
+\begin{bmatrix}
+-2,5 \\
+1,625
+\end{bmatrix}
+\]
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[c]
+Usando \texttt{MATRIZ.INVERSO}, temos que
+\[
+J^{-1}=
+\begin{bmatrix}
+0,2082 &	-0,0096 \\
+-0,2354	& 0,0416  \\
+\end{bmatrix}
+\]
+
+e
+\[
+\begin{bmatrix}
+x_1^1 \\ x_2^1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1,5 \\ 3,5
+\end{bmatrix}
+-
+\begin{bmatrix}
+0,2082 &	-0,0096 \\
+-0,2354	& 0,0416  \\
+\end{bmatrix}
+\begin{bmatrix}
+-2,5 \\
+1,625
+\end{bmatrix}
+=
+\begin{bmatrix}
+2,0360 \\
+2,8439
+\end{bmatrix}
+\]
+\end{frame}
+
+\begin{frame}{Exemplo}
+Resolva o seguinte sistema não linear 
+\[
+\begin{cases}
+x_1^2+x_2^2+x_3^2=1 \\
+2x_1^2+x_2^2-4x_3=0 \\
+3x_1^2-4x_2+x_3=0
+\end{cases}
+\]
+com
+\(
+x^0=
+\begin{bmatrix}
+0,5 \\ 0,5 \\ 0,5
+\end{bmatrix}
+\)
+e
+\(
+J=
+\begin{bmatrix}
+2x_1 & 2x_2 & 2x_3 \\
+4x_1 & 2x_2 & -4 \\
+6x_1 & -4 & 1
+\end{bmatrix}
+\)
+\end{frame}
+
