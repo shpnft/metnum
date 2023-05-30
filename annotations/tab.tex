@@ -2,7 +2,9 @@
 
 \usepackage{babel}
 \usepackage[utf8]{inputenc}
+% https://tex.stackexchange.com/a/677
 \usepackage[T1]{fontenc}
+% https://tex.stackexchange.com/a/147206
 \usepackage{lmodern}
 
 \usepackage[left=2cm, bottom=2cm, right=1.5cm, top=1.5cm]{geometry}
@@ -10,6 +12,22 @@
 \usepackage{xcolor}
 \usepackage{xstring}
 \usepackage{colortbl}
+\usepackage{pgffor}
+\usepackage{etoolbox}
+
+\newcommand{\nlinhas}{10}
+\newcommand{\ncolunas}{17}
+
+\newcommand{\professor}{%
+    1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,21,22,24,26,27,28,30,33,34,35,36,%
+    37,38,39,40,41,42,43,44,45,46,48,50,51,53,54,55,56,57,58,60,61,64,65,67,69,%
+    70,71,72,73,74,75,76,78,79,80%
+}
+
+\newcommand{\alunos}{%
+    19,20,23,25,29,31,32,47,59,63,133,145,146,148,149,150,151,165,49,52,68,66,%
+    140,139,143,77,154,155,156,157,158,159,161%
+}
 
 \newcounter{linha}\setcounter{linha}{1}
 \newcounter{coluna}\setcounter{coluna}{1}
@@ -42,48 +60,26 @@
 }
 
 \begin{document}
-\newcommand{\professor}{%
-    1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,21,22,24,26,27,28,30,33,34,35,36,%
-    37,38,39,40,41,42,43,44,45,46,48,50,51,53,54,55,56,57,58,60,61,64,65,67,69,%
-    70,71,72,73,74,75,76,78,79,80%
-}
-
-\newcommand{\alunos}{%
-    19,20,23,25,29,31,32,47,59,63,133,145,146,148,149,150,151,165,49,52,68,66,%
-    140,139,143,77,154,155,156,157,158,159,161%
-}
 
 \StrCount{\professor,}{,}{} questões respondidas pelo professor
 
 \StrCount{\alunos,}{,}{} questões respondidas pelos alunos
 
-\newcommand{\nlinhas}{10}
-\newcommand{\ncolunas}{17}
+% https://tex.stackexchange.com/a/596372
+\newcommand{\mymatrixcontent}{}
+\foreach \row in {1,...,\nlinhas}{%
+    \foreach \col in {1,...,\numexpr \ncolunas - 1\relax}{%
+        \xappto\mymatrixcontent{\expandonce{\dma{} &}}
+    }%
+    \xappto\mymatrixcontent{\expandonce{\dma{}}}
+    \xappto\mymatrixcontent{\\}
+    \xappto\mymatrixcontent{\expandonce{\hline}}
+}%
 
 \begin{center}
-    %FIXME: automatizar a criação da tabela com pgffor
     \begin{tabular}{|*{\ncolunas}{c|}}
         \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&
-        \dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{}&\dma{} \\ \hline
+        \mymatrixcontent
     \end{tabular}
 \end{center}
 
