@@ -15,8 +15,8 @@
 \usepackage{pgffor}
 \usepackage{etoolbox}
 
-\newcommand{\nlinhas}{10}
-\newcommand{\ncolunas}{17}
+\newcommand{\nlinhas}{17}
+\newcommand{\ncolunas}{10}
 
 \newcommand{\professor}{%
     1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,21,22,24,26,27,28,30,%
@@ -52,13 +52,9 @@
 \newcommand{\mymatrixcontent}{}
 \foreach \i in {1,...,\nlinhas}{%
     \foreach \j in {1,...,\numexpr \ncolunas - 1\relax}{%
-        \gappto\mymatrixcontent{\dma}
-        \xappto\mymatrixcontent{{\i}{\j}}
-        \gappto\mymatrixcontent{&}
+        \xappto\mymatrixcontent{\noexpand\dma {\i}{\j} \noexpand&}
     }%
-    \gappto\mymatrixcontent{\dma}
-    \xappto\mymatrixcontent{{\i}{\ncolunas}}
-    \gappto\mymatrixcontent{\\ \hline}
+    \xappto\mymatrixcontent{\noexpand\dma {\i}{\ncolunas} \noexpand\\ \noexpand\hline}
 }%
 
 \begin{document}

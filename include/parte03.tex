@@ -1,0 +1,194 @@
+\newcommand{\xpartcolor}[1]{\textcolor{blue}{#1}}
+\newcommand{\ypartcolor}[1]{\textcolor{red}{#1}}
+
+\newcommand{\funcao}[2]{
+    f\left(\xpartcolor{#1},~\ypartcolor{#2}\right)
+}
+\newcolumntype{a}{>{\columncolor{black!20}}c}
+
+\begin{frame}<1>[label=definicao]{Método de Runge Kutta de 4\textordfeminine{} ordem clássico}
+    Seja o problema de valor inicial (PVI):
+    \begin{align*}
+        y^\prime &= \funcao{x}{y}\quad y(x_0)=y_0 \quad y(x_N)=?
+        \onslide<2->{
+            \\
+            \intertext{temos que:}
+        k_1 &= \funcao{x}{y} \\
+        k_2 &= \funcao{x+\frac{h}{2}}{y+\frac{k_1h}{2}} \\
+        k_3 &= \funcao{x+\frac{h}{2}}{y+\frac{k_2h}{2}} \\
+        k_4 &= \funcao{x+h}{y+k_3h} \\
+        x_{i+1} &= x_i+h \\
+        y_{i+1} &= y_i+\frac{h}{6}(k_1+2k_2+2k_3+k4)
+    }
+\end{align*}
+\pause onde \(i=0,\ldots,N-1\) e \(h=(x_N-x_0)/N\)
+\end{frame}
+
+\begin{frame}<2-4>[label=exemploone]{Exemplo 1}
+    Seja o problema de valor inicial (PVI):
+    \begin{center}
+        \tikz [remember picture, baseline] {
+            \node (t1) {
+                \(
+                \displaystyle
+                y'=1+\frac{y}{x}+\left(\frac{y}{x}\right)^2 
+                \)
+            };
+        }
+        \tikz [remember picture, baseline] {
+            \node (t2) {
+                \(
+                \displaystyle
+                y(1)=0 
+                \)
+            };
+        }
+        \tikz [remember picture, baseline] {
+            \node (t3) {
+                \(
+                \displaystyle
+                y(3)=? 
+                \)
+            };
+        }
+    \end{center}
+
+    \begin{tikzpicture}[overlay, remember picture]
+        \foreach \x/\s/\t in {
+            t1/2/{Equação diferencial ordinária, EDO}, 
+            t2/3/Condição inicial, 
+        t3/4/Valor procurado}{
+            \only<\s> {
+                \draw [fill=red, opacity=0.1] (\x.north west) rectangle (\x.south east);
+                \draw [->] (\x.south) -- ++ (0,-1) node [below] {\t};
+            }
+        }
+    \end{tikzpicture}
+
+    \only<5-> {\alert{Solução:}}
+
+    \begin{align*}
+        \only<5> {k_1 &= \funcao{x}{y} \quad N=100\\}
+        \only<6> {k_2 &= \funcao{x+\frac{h}{2}}{y+\frac{k_1h}{2}} \\}
+        \only<7> {k_3 &= \funcao{x+\frac{h}{2}}{y+\frac{k_2h}{2}} \\}
+        \only<8> {k_4 &= \funcao{x+h}{y+k_3h} \\}
+        \only<9> {
+        x_{i+1} &= x_i+h \\
+        y_{i+1} &= y_i+\frac{h}{6}(k_1+2k_2+2k_3+k4)
+    }
+\end{align*}
+
+\begin{center}
+    \only<5-8> {
+        \begin{tabular}{a|p{4cm}|p{4cm}|p{4cm}}
+            \rowcolor{black!20} 
+            \only<5>{ 
+            & A & B & C \\ \hline
+            1 & h= & =(\xpartcolor{3}-\xpartcolor{1})/100 & \\ \hline
+            2 & x & y & k1 \\ \hline
+            3 & \xpartcolor{1} & \ypartcolor{0} & 
+            =1+\ypartcolor{B3}/\xpartcolor{A3}+(\ypartcolor{B3}/\xpartcolor{A3})\^{}2 \\ 
+        }
+        \only<6>{ 
+            & D & E & F \\ \hline
+    1 &  &  & \\ \hline
+    2 & x2 & y2 & k2 \\ \hline
+    3 & =\xpartcolor{A3+\$B\$1/2} & 
+    =\ypartcolor{B3 + C3*\$B\$1/2} & 
+    =1+\ypartcolor{E3}/\xpartcolor{D3}+(\ypartcolor{E3}/\xpartcolor{D3})\^{}2 \\ 
+}
+\only<7>{ 
+            & G & H & I \\ \hline
+1 &  &  & \\ \hline
+2 & x3 & y3 & k3 \\ \hline
+3 & =\xpartcolor{A3+\$B\$1/2} & 
+=\ypartcolor{B3 + F3*\$B\$1/2} & 
+=1+\ypartcolor{H3}/\xpartcolor{G3}+(\ypartcolor{H3}/\xpartcolor{G3})\^{}2 \\ 
+}
+\only<8>{ 
+            & J & K & L \\ \hline
+1 &  &  & \\ \hline
+2 & x4 & y4 & k4 \\ \hline
+3 & =\xpartcolor{A3+\$B\$1} & 
+=\ypartcolor{B3 + I3*\$B\$1} & 
+=1+\ypartcolor{K3}/\xpartcolor{J3}+(\ypartcolor{K3}/\xpartcolor{J3})\^{}2 \\ 
+}
+\end{tabular}
+}
+\only<9>{
+    \begin{tabular}{a|p{4cm}|p{8cm}}
+        \rowcolor{black!20}
+        & A & B  \\ \hline
+        1 & h= & =(\xpartcolor{3}-\xpartcolor{1})/100  \\ \hline
+        2 & x & y  \\ \hline
+        3 & \xpartcolor{1} & \ypartcolor{0}  \\ \hline
+        4 & =\xpartcolor{A3+\$B\$1} &
+        =\ypartcolor{B3+\$B\$1/6*(C3+2*F3+2*I3+L3)} \\
+    \end{tabular}
+}
+\end{center}
+\end{frame}
+
+\againframe<2->{definicao}
+
+\begin{frame}{}
+    \begin{center}
+        \begin{tikzpicture}[bob 1/.style={above,yshift=1ex}, bob 2/.style={below,yshift=-1ex}] 
+            \foreach \x in {0,...,7} {
+                \draw[thick,fill=black] (\x,0) circle (1pt) 
+                    node [bob 1] (y) {\(y_{\x}\)}
+                    node [bob 2] {\(x_{\x}\)}
+                    -- +(1,0);
+                \only<+> {\draw [->, thick, red] (y.north) to [out=30, in=150] +(1,0);}
+                }
+                \draw[thick, fill=black, dotted] (8,0) 
+                    circle (1pt) 
+                    node [bob 1] (y) {\(y_{8}\)} 
+                    node [bob 2] {\(x_{8}\)}
+                    -- (10,0) 
+                    circle (1pt)
+                    node [bob 1] (dez) {\(y_{N}\)} 
+                    node [bob 2] {\(x_{N}\)};
+                %FIXME: vimtex não consegue indentar isso aqui...
+                \only<+> {\draw [->, thick, red] (y.north) to [out=30, in=150] +(1,0);}
+                    \only<+> {\draw [->, thick, red] ($(dez.north)-(1,0)$) to [out=30, in=150] (dez.north);}
+                        \only<+-> {\node [star, star points=5, fill=red!25, bob 1] at (10,0) {\(y_{N}\)};}
+                        \end{tikzpicture}%   
+                    \end{center} 
+
+                    \onslide<+->{
+                        \begin{block}
+                            {Decisões}
+                            \begin{itemize}
+                                \item Temos que \(h=(x_N-x_0)/N\)
+                                \item Quanto maior o valor de \(N\), melhor o método se comporta em um \textit{mundo ideal}
+                                \item Mas quanto maior o valor de \(N\) menor é o valor de \(h\) e chega um ponto onde \textbf{não há casas decimais o suficiente armazenadas na memória do computador}
+                                \item Por exemplo, \num{3}+\num{0.0000000000001}=\num{3} se o computador só guarda 9 casas decimais, causando \textit{erros de arredondamento}
+                            \end{itemize}
+                        \end{block}
+                    }
+                \end{frame}
+
+                \againframe<5->{exemploone}
+
+                \begin{frame}{Finalmente...}
+
+                    \begin{itemize}
+                        \item Copia-se C3:L3 em C4:L4
+                        \item Copia-se A4:L4 em A5:L103
+                        \item O valor procurado está em B103
+                        \item \alert{Observação:} se \(N \neq 100\), troca-se 103 por \(N+3\)
+                    \end{itemize}
+
+                \end{frame}
+
+                \begin{frame}{Mais exemplos...}
+                    Determine o valor procurado em cada um dos seguintes PVI's:
+
+                    \begin{enumerate}\setcounter{enumi}{1}
+                        \item \(y'=1+(x-y)^2 \quad y(2)=1 \quad y(3)=?\)
+                        \item \(y'=1+y/x \quad y(1)=2 \quad y(2)=?\)
+                        \item \(y'=y^2/(1+x) \quad y(1)=-1/\ln{2} \quad y(2)=?\)
+                    \end{enumerate}
+
+                \end{frame}
