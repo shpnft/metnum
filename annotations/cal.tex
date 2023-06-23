@@ -16,6 +16,12 @@
 \usepackage{colortbl}
 \usepackage{xstring}
 
+\newcounter{shablau}
+\newcount\mycount%
+\newcount\segunda%
+\newcommand{\mes}{01}
+\newcommand{\mymatrixcontent}{}
+
 \newcommand{\tabnum}[2]{
     \foreach \i in {1,...,#1}{%
         \foreach \j in {1,...,\numexpr #2 - 1\relax}{%
@@ -23,36 +29,32 @@
         }%
         \xappto\mymatrixcontent{\noexpand\dma\noexpand\\}
     }%
-
-    \begin{tabular}{*{#2}{c}}
-        \rowcolor{black!10} Seg & Ter & Qua & Qui & Sex & Sáb & Dom \\
-        \mymatrixcontent
-    \end{tabular}
 }
 
-\newcounter{shablau}
 \newcommand{\dma}{
     \stepcounter{shablau}%
-    \newcount\mycount%
-    \newcount\segunda%
-    \pgfcalendardatetojulian{2023-\mes{}-01}{\mycount}%
-    \pgfcalendarjuliantoweekday{\mycount}{\segunda}%
-    \advance\mycount by \numexpr \value{shablau} - 1 - \segunda \relax%
+    \advance\mycount by \numexpr \value{shablau} - 2 - \segunda \relax%
     \pgfcalendarjuliantodate{\mycount}{\myyear}{\mymonth}{\myday}%
-    \pgfcalendarifdate{\myyear-\mymonth-\myday}{weekend}{\color{red}}{}%
-    \IfSubStr{,\feriados,}{,\myday/\mymonth/\myyear,}{\color{red}}{}
     \ifnum\mymonth=\mes{}\relax%
+        \pgfcalendarifdate{\myyear-\mymonth-\myday}{weekend}{\color{red}}{}%
+        \IfSubStr{,\feriados,}{,\myday/\mymonth/\myyear,}{\color{red}}{}
         \myday%
+    \else%
+        \color{black!20}\myday%
     \fi%
 }
 
-\newcommand{\mes}{01}
-\newcommand{\mymatrixcontent}{}
 \newcommand{\calendario}[1]{
     \renewcommand{\mes}{#1}
     \renewcommand{\mymatrixcontent}{}
     \setcounter{shablau}{0}
+    \pgfcalendardatetojulian{2023-\mes{}-01}{\mycount}%
+    \pgfcalendarjuliantoweekday{\mycount}{\segunda}%
     \tabnum{6}{7}
+    \begin{tabular}{*{7}{c}}
+        \rowcolor{black!10} Dom & Seg & Ter & Qua & Qui & Sex & Sáb \\
+        \mymatrixcontent
+    \end{tabular}
 }
 
 \begin{document}
