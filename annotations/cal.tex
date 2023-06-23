@@ -14,13 +14,14 @@
 \usepackage{pgfcalendar}
 \usepackage{xcolor}
 \usepackage{colortbl}
+\usepackage{xstring}
 
 \newcommand{\tabnum}[2]{
     \foreach \i in {1,...,#1}{%
         \foreach \j in {1,...,\numexpr #2 - 1\relax}{%
             \xappto\mymatrixcontent{\noexpand\dma \noexpand&}
         }%
-        \xappto\mymatrixcontent{\noexpand\dma \noexpand\\}
+        \xappto\mymatrixcontent{\noexpand\dma\noexpand\\}
     }%
 
     \begin{tabular}{*{#2}{c}}
@@ -38,8 +39,10 @@
     \pgfcalendarjuliantoweekday{\mycount}{\segunda}%
     \advance\mycount by \numexpr \value{shablau} - 1 - \segunda \relax%
     \pgfcalendarjuliantodate{\mycount}{\myyear}{\mymonth}{\myday}%
+    \pgfcalendarifdate{\myyear-\mymonth-\myday}{weekend}{\color{red}}{}%
+    \IfSubStr{,\feriados,}{,\myday/\mymonth/\myyear,}{\color{red}}{}
     \ifnum\mymonth=\mes{}\relax%
-        \myday
+        \myday%
     \fi%
 }
 
@@ -54,6 +57,8 @@
 
 \begin{document}
 \centering
+
+\newcommand{\feriados}{07/04/2023,21/04/2023,25/04/2023,01/05/2023,08/06/2023,29/06/2023}
 \foreach \i/\j in {Janeiro/01,Fevereiro/02,Março/03,Abril/04,Maio/05,Junho/06} {
     \section*{\i}
     \calendario{\j}
